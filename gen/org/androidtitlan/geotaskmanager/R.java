@@ -60,20 +60,20 @@ containing a value of this type.
         public static final int stop_mdpi=0x7f020003;
     }
     public static final class id {
-        public static final int ad=0x7f05000f;
         public static final int add_button=0x7f050009;
         public static final int add_location_button=0x7f050008;
         public static final int address_text=0x7f050007;
+        public static final int admob=0x7f05000b;
         public static final int cancel_button=0x7f05000a;
         public static final int layout_root=0x7f050010;
-        public static final int location_text=0x7f05000b;
+        public static final int location_text=0x7f05000c;
         public static final int location_title=0x7f050000;
         public static final int map=0x7f050003;
         public static final int map_location_button=0x7f050002;
         public static final int no_internet_connection_text=0x7f050012;
-        public static final int remove_button=0x7f05000c;
-        public static final int show_local_tasks_text=0x7f05000e;
-        public static final int show_local_tasks_toggle=0x7f05000d;
+        public static final int remove_button=0x7f05000d;
+        public static final int show_local_tasks_text=0x7f05000f;
+        public static final int show_local_tasks_toggle=0x7f05000e;
         public static final int stop_png=0x7f050011;
         public static final int task_address=0x7f050001;
         public static final int task_name=0x7f050006;

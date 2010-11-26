@@ -5,6 +5,16 @@ xmlns:myapp="http://schemas.android.com/apk/res/org.androidtitlan.geotaskmanager
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
+    <com.admob.android.ads.AdView 
+		android:id="@+id/admob"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" 
+		myapp:backgroundColor="#000000" 
+		myapp:primaryTextColor="#FFFFFF" 
+		myapp:secondaryTextColor="#CCCCCC"
+    	android:layout_alignParentBottom="true"
+    	
+	/> 
 	<TextView  
 		android:id="@+id/tasks_title"
     	android:layout_width="fill_parent" 
@@ -38,21 +48,23 @@ xmlns:myapp="http://schemas.android.com/apk/res/org.androidtitlan.geotaskmanager
 	    android:layout_width="wrap_content" 
 	    android:layout_height="wrap_content" 
 	    android:text="@string/add_tasks"
-	    android:layout_alignParentBottom="true"
+	    android:layout_alignTop="@+id/remove_button"
+	    
     />
     <Button
     	android:id="@+id/remove_button"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_alignParentBottom="true"
     	android:layout_toRightOf="@id/add_button"
     	android:text="@string/remove"
+    	android:layout_above="@+id/admob"
+    	
     	/>
     <ToggleButton
     	android:id="@+id/show_local_tasks_toggle"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_alignParentBottom="true"
+    	android:layout_above="@+id/admob"
     	android:layout_toRightOf="@id/remove_button"
     	android:textOn="On"
     	android:textOff="Off"
@@ -71,15 +83,7 @@ xmlns:myapp="http://schemas.android.com/apk/res/org.androidtitlan.geotaskmanager
     	android:layout_alignTop="@id/show_local_tasks_toggle"
     	android:layout_alignParentBottom="true"
     	/>
-    <com.admob.android.ads.AdView 
-		android:id="@+id/ad"
-		android:layout_width="fill_parent" 
-		android:layout_height="wrap_content" 
-		myapp:backgroundColor="#000000" 
-		myapp:primaryTextColor="#FFFFFF" 
-		myapp:secondaryTextColor="#CCCCCC"
-    	android:layout_alignParentBottom="true"
-		/> 
+    
 </RelativeLayout>
 
 
