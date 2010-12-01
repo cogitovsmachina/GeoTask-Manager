@@ -1,6 +1,7 @@
 package org.androidtitlan.geotaskmanager;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
@@ -21,6 +23,15 @@ import com.google.android.maps.Overlay;
 
 import org.androidtitlan.geotaskmanager.R;
 import org.androidtitlan.geotaskmanager.views.AddressOverlay;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class AddLocationMapActivity extends MapActivity {
 	
@@ -73,10 +84,10 @@ public class AddLocationMapActivity extends MapActivity {
 				});
 				useLocationButton.setEnabled(true);
 			} else {
-		        Toast.makeText(this, "No se puede obtener la dirección", Toast.LENGTH_SHORT).show();
+		        Toast.makeText(this, "Cant Get Address, check if you have internet or if its well written", Toast.LENGTH_LONG).show();
 			}
 		} catch (IOException e) {
-	        Toast.makeText(this, "No se puede obtener la dirección", Toast.LENGTH_SHORT).show();
+	        Toast.makeText(this, "Cant Get Address, check if you have internet or if its well written", Toast.LENGTH_LONG).show();
 			Log.d("Location Lookup Failed", e.getMessage());
 	        e.printStackTrace();
 		}
@@ -136,5 +147,5 @@ public class AddLocationMapActivity extends MapActivity {
 	protected boolean isRouteDisplayed() {
 		return false;
 	}
-
+	
 }

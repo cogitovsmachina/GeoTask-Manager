@@ -26,7 +26,7 @@ import android.widget.ToggleButton;
 
 public class ViewTasksActivity extends ListActivity implements LocationListener {
 
-	private static final long LOCATION_FILTER_DISTANCE = 200;
+	private static final long LOCATION_FILTER_DISTANCE = 3000;
 	private Button addButton;
 	private TaskListAdapter adapter;
 	private GeoTaskManagerApplication app;
