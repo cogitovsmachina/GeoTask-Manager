@@ -55,12 +55,18 @@ public class AddLocationMapActivity extends MapActivity {
 	protected void onResume(){
 		super.onResume();
 		myLocationOverlay.enableMyLocation();
+		
 	}
 
 	@Override
 	protected void onPause(){
 		super.onPause();
+		finish();
 		myLocationOverlay.disableMyLocation();
+
+
+		
+		
 	}
 	
 	protected void mapCurrentAddress() {

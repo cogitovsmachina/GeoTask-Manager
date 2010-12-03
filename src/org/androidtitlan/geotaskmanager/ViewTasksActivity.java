@@ -7,6 +7,7 @@ import org.androidtitlan.geotaskmanager.tasks.Task;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -120,14 +122,48 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 	}
 	
 	private void setUpLocation() {
-		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		locationManager.requestLocationUpdates(
+		LocationManager locationmanager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+		//we say we need to send us a ping constantly using 60ms or 5 meters of difference to requests
+		locationmanager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
                 60,
                 5,
                 this);
+	    if ( !locationmanager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+	        buildAlertMessageNoGps();
+	    }
+		
 	}
 	
+	//Checking if there are connection, else activate from the dialog 
+	private void buildAlertMessageNoGps() {
+		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	    builder.setMessage("Yout GPS seems to be disabled, do you want to enable it?")
+	           .setCancelable(false)
+	           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+	               public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+	                   launchGPSOptions(); 
+	               }
+	           })
+	           .setNegativeButton("No", new DialogInterface.OnClickListener() {
+	               public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+	                    dialog.cancel();
+	               }
+	           });
+	    final AlertDialog alert = builder.create();
+	    alert.show();
+		
+	}
+
+	private void launchGPSOptions() {
+        final ComponentName toLaunch = new ComponentName("com.android.settings","com.android.settings.SecuritySettings");
+        final Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+        intent.setComponent(toLaunch);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivityForResult(intent, 0);
+    }
+
 	//method to detect if device is connected by any means
 	public boolean isOnline() {
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
