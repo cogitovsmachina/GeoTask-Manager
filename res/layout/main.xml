@@ -20,12 +20,16 @@ xmlns:myapp="http://schemas.android.com/apk/res/org.androidtitlan.geotaskmanager
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content" 
     	android:text="@string/tasks"
+    	style="@style/TextAppearance.Title"
+    	
     />
     <TextView
     	android:id="@+id/location_text"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_alignParentRight="true"
+    	style="@style/TextAppearance.Title"
+    	
     	/>
     <ListView 
     	android:id="@id/android:list"
@@ -42,6 +46,8 @@ xmlns:myapp="http://schemas.android.com/apk/res/org.androidtitlan.geotaskmanager
     	android:gravity="center_vertical|center_horizontal"
     	android:layout_below="@id/tasks_title"
     	android:layout_above="@id/add_button"
+    	style="@style/TextAppearance.Title"
+    	
     />
     <Button  
     	android:id="@+id/add_button"

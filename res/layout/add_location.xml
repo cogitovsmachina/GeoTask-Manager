@@ -8,6 +8,7 @@
 	    android:layout_width="fill_parent" 
 	    android:layout_height="wrap_content" 
  		android:text="@string/add_location_to_task"
+ 		style="@style/TextAppearance.Title"
 	    />
 	<EditText
  		android:id="@+id/task_address"
@@ -27,8 +28,8 @@
  		android:layout_height="wrap_content"
 		android:layout_below="@id/map_location_button"
 		android:layout_above="@+id/use_this_location_button"
- 		android:clickable="true"
- 		android:apiKey="0ggmsULpx5gWnKdIEw2m1AmGVAPURVYY-LhPUYw" />
+ 		android:clickable="true" 		
+ 		android:apiKey="0HaBk-SFoj5mylVmA5E9xfmP6jpha9IbyBVWDXA" /> <!--0HaBk-SFoj5mG0RDgbRUku_ngMx72UZ2s5p6-tA--> 
  		<!--debug certificate 0HaBk-SFoj5mylVmA5E9xfmP6jpha9IbyBVWDXA--> 
 	<Button
 		android:id="@id/use_this_location_button"

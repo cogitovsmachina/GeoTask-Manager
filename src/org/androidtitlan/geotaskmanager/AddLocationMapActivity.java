@@ -79,19 +79,18 @@ public class AddLocationMapActivity extends MapActivity {
 				final MapController mapController = mapView.getController();
 				mapController.animateTo(addressOverlay.getGeopoint(), new Runnable() {
 					public void run() {
-						mapController.setZoom(12);
+						mapController.setZoom(18);
 					}
 				});
 				useLocationButton.setEnabled(true);
 			} else {
-		        Toast.makeText(this, "Cant Get Address, check if you have internet or if its well written", Toast.LENGTH_LONG).show();
+		        Toast.makeText(this, "Problem finding the address, don't use commas (,) and check if you have internet access.", Toast.LENGTH_SHORT).show();
 			}
 		} catch (IOException e) {
-	        Toast.makeText(this, "Cant Get Address, check if you have internet or if its well written", Toast.LENGTH_LONG).show();
-			Log.d("Location Lookup Failed", e.getMessage());
-	        e.printStackTrace();
+	        Toast.makeText(this, "Problem finding the address, don't use commas (,) and check if you have internet access.", Toast.LENGTH_SHORT).show();
+		        Toast.makeText(this, "Cant Get Address, check if you have internet or if its well written", Toast.LENGTH_LONG).show();
+			}
 		}
-	}
 
 	private void setUpViews() {
 		addressText = (EditText)findViewById(R.id.task_address);

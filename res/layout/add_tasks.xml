@@ -9,6 +9,8 @@
 		android:layout_width="fill_parent"
    	    android:layout_height="wrap_content"
    	    android:text="@string/add_task" 
+   	    style="@style/TextAppearance.Title"
+   	    
    	    />
    	<EditText
    	    android:layout_width="fill_parent"
@@ -20,6 +22,8 @@
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
     	android:visibility="gone"
+    	style="@style/TextAppearance.Title"
+    	
     	/>
 	<Button
     	android:id="@+id/add_location_button"
