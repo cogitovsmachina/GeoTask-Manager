@@ -1,5 +1,9 @@
 package org.androidtitlan.geotaskmanager;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 import org.androidtitlan.geotaskmanager.R;
 import org.androidtitlan.geotaskmanager.adapter.TaskListAdapter;
 import org.androidtitlan.geotaskmanager.tasks.Task;
@@ -12,6 +16,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -63,15 +69,42 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 		Task t = adapter.getItem(position);
 		app.saveTask(t);
 	}
-	
+	//we added a LocationManager and a Geocoder to change as a human-readable string
 	public void onLocationChanged(Location location) {
-		latestLocation = location;
+		printMyCurrentLocationAsString();
+		
+		/*latestLocation = location;
 		String locationString = String.format(
 				"@ %f, %f +/- %fm",
 				location.getLatitude(),
 				location.getLongitude(),
 				location.getAccuracy());
-		locationText.setText(locationString);
+		locationText.setText(locationString); */
+	}
+
+	private void printMyCurrentLocationAsString() {
+		LocationManager mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria(); criteria.setAccuracy(Criteria.ACCURACY_FINE); 
+        criteria.setPowerRequirement(Criteria.POWER_LOW); 
+        String locationprovider = mLocationManager.getBestProvider(criteria,true);
+        Location mLocation = mLocationManager.getLastKnownLocation(locationprovider);
+        
+        List<Address> addresses; 
+        try {
+        	Geocoder mGC = new Geocoder(this, Locale.ENGLISH); 
+        	addresses = mGC.getFromLocation(mLocation.getLatitude(),
+        	mLocation.getLongitude(), 1);
+        	if(addresses != null) {
+        		Address currentAddr = addresses.get(0); 
+        		StringBuilder mSB = new StringBuilder(""); 
+        		for(int i=0; i<currentAddr.getMaxAddressLineIndex(); i++) {
+        	mSB.append(currentAddr.getAddressLine(i)).append(",");
+        	}
+        	locationText.setText(mSB.toString());
+        	}
+        } catch(IOException e){
+        	locationText.setText(e.getMessage());
+        	}
 	}
 
 	public void onProviderDisabled(String provider) { }
@@ -138,7 +171,7 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 	//Checking if there are connection, else activate from the dialog 
 	private void buildAlertMessageNoGps() {
 		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    builder.setMessage("Yout GPS seems to be disabled, do you want to enable it?")
+	    builder.setMessage("You GPS seems to be disabled, do you want to enable it?")
 	           .setCancelable(false)
 	           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 	               public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {

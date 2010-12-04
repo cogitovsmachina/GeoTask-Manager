@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <string name="show_local">Show Local Tasks Only</string>
+    <string name="show_local">Show Local</string>
     <string name="add_location_to_task">Add Location to Task</string>
     <string name="remove">Remove Completed</string>
     <string name="no_tasks">No Tasks</string>

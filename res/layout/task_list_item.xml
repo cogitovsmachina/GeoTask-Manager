@@ -11,15 +11,14 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:gravity="center_vertical"
-		android:checkMark="?android:attr/listChoiceIndicatorMultiple" />
+		android:checkMark="?android:attr/listChoiceIndicatorMultiple" 
+		style="@style/TextAppearance.Title"/>
 	<TextView
 		android:id="@+id/address_text"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:visibility="gone"
 		android:color="#FFFFFF"
-		style="@style/TextAppearance.Title"
-		
 	/>
 </org.androidtitlan.geotaskmanager.views.TaskListItem>
 	
