@@ -7,8 +7,11 @@
 	<color name="color_foreground_inverse">#FF444444</color>
 	
 	<!-- Title Backgrounds for gradients -->
-	<color name="title_color_light">#FFC01414</color>
-	<color name="title_color_dark">#FF860000</color>
+	<!-- <color name="title_color_light">#FFC01414</color>
+	<color name="title_color_dark">#FF860000</color> -->
+	<color name="title_color_light">#FF40E01B</color>  
+	<color name="title_color_dark">#FF20710E</color>
+	
 	<color name="title_border">#FF282828</color>    	
 	
 	<!-- Full configuration of differents states and colors of bottons -->

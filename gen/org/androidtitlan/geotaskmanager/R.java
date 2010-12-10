@@ -84,6 +84,8 @@ containing a value of this type.
         public static final int title_border=0x7f040005;
         public static final int title_color_dark=0x7f040004;
         /**  Title Backgrounds for gradients 
+ <color name="title_color_light">#FFC01414</color>
+	<color name="title_color_dark">#FF860000</color> 
          */
         public static final int title_color_light=0x7f040003;
     }
@@ -150,11 +152,12 @@ containing a value of this type.
         public static final int cancel=0x7f050008;
         public static final int cancel_button=0x7f05000c;
         public static final int discard=0x7f05000b;
+        public static final int location_string=0x7f050005;
         public static final int map_this_address=0x7f05000e;
         public static final int no_tasks=0x7f050003;
+        public static final int ok=0x7f05000f;
         public static final int remove=0x7f050002;
         public static final int show_local=0x7f050000;
-        public static final int tasks=0x7f050005;
         public static final int unsaved_changes_message=0x7f05000a;
         public static final int unsaved_changes_title=0x7f050009;
         public static final int use_this_location=0x7f05000d;

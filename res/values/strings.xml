@@ -6,7 +6,7 @@
     <string name="no_tasks">No Tasks</string>
     
     <string name="app_name">GeoTask Manager</string>
-<string name="tasks">Tasks</string>
+<string name="location_string">You are here:</string>
     <string name="add_tasks">Add </string>
     <string name="add_task">Add Task</string>
     <string name="cancel">Cancel</string>
@@ -16,5 +16,7 @@
 <string name="cancel_button">Cancel</string>
 <string name="use_this_location">Use this Location</string>
     <string name="map_this_address">Map this Address</string>
+    <string name="ok">Ok</string>
+    
 
 </resources>

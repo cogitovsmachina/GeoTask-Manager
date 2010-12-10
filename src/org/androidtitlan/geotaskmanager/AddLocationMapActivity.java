@@ -40,7 +40,7 @@ public class AddLocationMapActivity extends MapActivity {
 	private Button mapLocationButton;
 	private Button useLocationButton;
 	private EditText addressText;
-	private MapView mapView;
+	public MapView mapView;
 	private Address address;
 	private MyLocationOverlay myLocationOverlay;
 

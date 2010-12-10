@@ -11,6 +11,7 @@ import org.androidtitlan.geotaskmanager.tasks.Task;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,6 +25,8 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
@@ -32,7 +35,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-public class ViewTasksActivity extends ListActivity implements LocationListener {
+public class ViewTasksActivity extends ListActivity implements LocationListener, Runnable {
 
 	private static final long LOCATION_FILTER_DISTANCE = 3000;
 	private Button addButton;
@@ -43,6 +46,11 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 	private ToggleButton localTasksToggle;
 	private LocationManager locationManager;
 	private Location latestLocation;
+	private ProgressDialog pd;
+	private Thread searchAdress;
+	private List<Address> foundAdresses;
+	private String location;
+
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,8 +62,18 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
         adapter = new TaskListAdapter(this, app.getCurrentTasks());
         setListAdapter(adapter);
         setUpLocation();
+        
+        //Showing a progress dialog for check current location
+        pd = ProgressDialog.show(this, "Working..", "Obtaining your current location",
+        		true,false);
+        Thread thread = new Thread(this);
+        thread.start();
+        
+
     }
 	
+	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -71,7 +89,7 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 	}
 	//we added a LocationManager and a Geocoder to change as a human-readable string
 	public void onLocationChanged(Location location) {
-		printMyCurrentLocationAsString();
+		//printMyCurrentLocationAsString();
 		
 		/*latestLocation = location;
 		String locationString = String.format(
@@ -81,6 +99,7 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 				location.getAccuracy());
 		locationText.setText(locationString); */
 	}
+	 
 
 	private void printMyCurrentLocationAsString() {
 		LocationManager mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -187,7 +206,7 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 	    alert.show();
 		
 	}
-
+	//If there arent GPS on, then launch it!
 	private void launchGPSOptions() {
         final ComponentName toLaunch = new ComponentName("com.android.settings","com.android.settings.SecuritySettings");
         final Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -236,5 +255,44 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 		       });
 		AlertDialog alert = builder.create();
 	}
+
+
+
+	public void run() {
+		LocationManager mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria(); criteria.setAccuracy(Criteria.ACCURACY_FINE); 
+        criteria.setPowerRequirement(Criteria.POWER_LOW); 
+        String locationprovider = mLocationManager.getBestProvider(criteria,true);
+        Location mLocation = mLocationManager.getLastKnownLocation(locationprovider);
+        
+        List<Address> addresses; 
+        try {
+        	Geocoder mGC = new Geocoder(this, Locale.ENGLISH); 
+        	addresses = mGC.getFromLocation(mLocation.getLatitude(),
+        	mLocation.getLongitude(), 1);
+        	if(addresses != null) {
+        		Address currentAddr = addresses.get(0); 
+        		StringBuilder mSB = new StringBuilder(""); 
+        		for(int i=0; i<currentAddr.getMaxAddressLineIndex(); i++) {
+        	mSB.append(currentAddr.getAddressLine(i)).append(",");
+        	}
+        	  locationText.setText(mSB.toString());
+        	
+        	}
+        } catch(IOException e){
+        	locationText.setText(e.getMessage());
+        	}
+        handler.sendEmptyMessage(0);
+	}
+	
+	 public Handler handler = new Handler() {
+         @Override
+         public void handleMessage(Message msg) {
+                 pd.dismiss();
+                 locationText = locationText;
+
+         }
+ };
+
 
 }     
