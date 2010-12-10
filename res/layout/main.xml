@@ -15,18 +15,19 @@ xmlns:myapp="http://schemas.android.com/apk/res/org.androidtitlan.geotaskmanager
     	android:layout_alignParentBottom="true"
     	
 	/> 
-	 <TextView  
+	<TextView  
 		android:id="@+id/tasks_title"
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content" 
     	android:text="@string/location_string"
     	
-    /> 
+    />
     <TextView
     	android:id="@+id/location_text"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_alignParentTop="true"
+    	android:layout_alignParentRight="true"
+    	
     	/>
     <ListView 
     	android:id="@id/android:list"

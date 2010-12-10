@@ -35,7 +35,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-public class ViewTasksActivity extends ListActivity implements LocationListener, Runnable {
+public class ViewTasksActivity extends ListActivity implements LocationListener {
 
 	private static final long LOCATION_FILTER_DISTANCE = 3000;
 	private Button addButton;
@@ -56,19 +56,15 @@ public class ViewTasksActivity extends ListActivity implements LocationListener,
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        
         setUpViews();
         app = (GeoTaskManagerApplication)getApplication();
         adapter = new TaskListAdapter(this, app.getCurrentTasks());
         setListAdapter(adapter);
         setUpLocation();
+        printMyCurrentLocationAsString(); 
+
         
-        //Showing a progress dialog for check current location
-        pd = ProgressDialog.show(this, "Working..", "Obtaining your current location",
-        		true,false);
-        Thread thread = new Thread(this);
-        thread.start();
-        
+       
 
     }
 	
@@ -255,44 +251,6 @@ public class ViewTasksActivity extends ListActivity implements LocationListener,
 		       });
 		AlertDialog alert = builder.create();
 	}
-
-
-
-	public void run() {
-		LocationManager mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria(); criteria.setAccuracy(Criteria.ACCURACY_FINE); 
-        criteria.setPowerRequirement(Criteria.POWER_LOW); 
-        String locationprovider = mLocationManager.getBestProvider(criteria,true);
-        Location mLocation = mLocationManager.getLastKnownLocation(locationprovider);
-        
-        List<Address> addresses; 
-        try {
-        	Geocoder mGC = new Geocoder(this, Locale.ENGLISH); 
-        	addresses = mGC.getFromLocation(mLocation.getLatitude(),
-        	mLocation.getLongitude(), 1);
-        	if(addresses != null) {
-        		Address currentAddr = addresses.get(0); 
-        		StringBuilder mSB = new StringBuilder(""); 
-        		for(int i=0; i<currentAddr.getMaxAddressLineIndex(); i++) {
-        	mSB.append(currentAddr.getAddressLine(i)).append(",");
-        	}
-        	  locationText.setText(mSB.toString());
-        	
-        	}
-        } catch(IOException e){
-        	locationText.setText(e.getMessage());
-        	}
-        handler.sendEmptyMessage(0);
-	}
-	
-	 public Handler handler = new Handler() {
-         @Override
-         public void handleMessage(Message msg) {
-                 pd.dismiss();
-                 locationText = locationText;
-
-         }
- };
 
 
 }     
