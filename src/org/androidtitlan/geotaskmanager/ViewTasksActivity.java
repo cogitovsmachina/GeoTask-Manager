@@ -87,13 +87,7 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 	public void onLocationChanged(Location location) {
 		printMyCurrentLocationAsString(location);
 		
-		/*latestLocation = location;
-		String locationString = String.format(
-				"@ %f, %f +/- %fm",
-				location.getLatitude(),
-				location.getLongitude(),
-				location.getAccuracy());
-		locationText.setText(locationString); */
+		
 	}
 	 
 
