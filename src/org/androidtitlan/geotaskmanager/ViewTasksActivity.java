@@ -61,7 +61,7 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
         adapter = new TaskListAdapter(this, app.getCurrentTasks());
         setListAdapter(adapter);
         setUpLocation();
-        printMyCurrentLocationAsString(); 
+      //  printMyCurrentLocationAsString(location); 
 
         
        
@@ -85,7 +85,7 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 	}
 	//we added a LocationManager and a Geocoder to change as a human-readable string
 	public void onLocationChanged(Location location) {
-		//printMyCurrentLocationAsString();
+		printMyCurrentLocationAsString(location);
 		
 		/*latestLocation = location;
 		String locationString = String.format(
@@ -97,13 +97,13 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 	}
 	 
 
-	private void printMyCurrentLocationAsString() {
+	private void printMyCurrentLocationAsString(Location location) {
 		LocationManager mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria(); criteria.setAccuracy(Criteria.ACCURACY_FINE); 
         criteria.setPowerRequirement(Criteria.POWER_LOW); 
         String locationprovider = mLocationManager.getBestProvider(criteria,true);
         Location mLocation = mLocationManager.getLastKnownLocation(locationprovider);
-        
+        latestLocation = location;
         List<Address> addresses; 
         try {
         	Geocoder mGC = new Geocoder(this, Locale.ENGLISH); 
