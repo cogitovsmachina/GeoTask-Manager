@@ -156,8 +156,11 @@ containing a value of this type.
         public static final int map_this_address=0x7f05000e;
         public static final int no_tasks=0x7f050003;
         public static final int ok=0x7f05000f;
+        public static final int ok_ill_never_doit_again=0x7f050010;
         public static final int remove=0x7f050002;
         public static final int show_local=0x7f050000;
+        public static final int the_task_must_have_description_message=0x7f050011;
+        public static final int the_task_must_have_description_title=0x7f050012;
         public static final int unsaved_changes_message=0x7f05000a;
         public static final int unsaved_changes_title=0x7f050009;
         public static final int use_this_location=0x7f05000d;

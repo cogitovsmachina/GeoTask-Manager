@@ -17,6 +17,11 @@
 <string name="use_this_location">Use this Location</string>
     <string name="map_this_address">Map this Address</string>
     <string name="ok">Ok</string>
+    <string name="ok_ill_never_doit_again">Ok, i never do it again</string>
+    <string name="the_task_must_have_description_message">The task must have description, Please add something!</string>
+    <string name="the_task_must_have_description_title">The task need description</string>
+    
+    
     
 
 </resources>

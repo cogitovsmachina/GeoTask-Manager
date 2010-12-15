@@ -128,7 +128,6 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 	}
 	
 	protected void showLocalTasks(boolean checked) {
-		
 		if (checked) {
 			isOnline();
 			adapter.filterTasksByLocation(latestLocation, LOCATION_FILTER_DISTANCE);			

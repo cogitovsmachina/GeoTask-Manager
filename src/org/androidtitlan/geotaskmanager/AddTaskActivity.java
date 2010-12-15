@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewAnimator;
 
 public class AddTaskActivity extends TaskManagerActivity{
@@ -30,6 +31,7 @@ public class AddTaskActivity extends TaskManagerActivity{
 	private Address address;
 	private Button addLocationButton;
 	private TextView addressText;
+	private AlertDialog theTaskMustHaveDescriptionDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +66,34 @@ public class AddTaskActivity extends TaskManagerActivity{
 	}
 	protected void addTask() {
 		String taskName = ((TextView) taskNameEditText).getText().toString();
-		Task t = new Task(taskName);
+		//validating if editText empty
+		if(taskName.equals("")){
+			showTaskMustHaveDescriptionDialog();
+		}
+		else{
+			Task t = new Task(taskName);
 		t.setAdress(address);
 		getGeoTaskManagerApplication().addTask(t);
 		finish();
+			
+	}		
 	}
+	
+		
+	//Using this method to tell the user need to add something to the task title =)
+	private void showTaskMustHaveDescriptionDialog() {
+		theTaskMustHaveDescriptionDialog = new AlertDialog.Builder(this)
+		.setTitle(R.string.the_task_must_have_description_title)
+		.setMessage(R.string.the_task_must_have_description_message)
+		.setNeutralButton(R.string.ok_ill_never_doit_again, new AlertDialog.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+				}
+		})	
+		.create();
+	theTaskMustHaveDescriptionDialog.show();		
+	}
+
 	//Here we are using another way of Click Listener, which basically uses XML Layout to call a method =).
 	public void addLocationButtonClicked(View view){
 		Intent intent = new Intent(AddTaskActivity.this, AddLocationMapActivity.class);
@@ -85,6 +110,7 @@ public class AddTaskActivity extends TaskManagerActivity{
 					public void onClick(DialogInterface dialog, int which) {
 						addTask();
 					}
+
 				})
 				.setNeutralButton(R.string.discard, new AlertDialog.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
@@ -122,8 +148,10 @@ public class AddTaskActivity extends TaskManagerActivity{
 				cancel();
 			}
 		});
+		
+		//Here we are adding a TextWatcher, just to validate there are some
+		//text inside our taskNameEditText EditText 
 		((TextView) taskNameEditText).addTextChangedListener(new TextWatcher() {
-			
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				changesPending =true;				
 			}
@@ -136,6 +164,9 @@ public class AddTaskActivity extends TaskManagerActivity{
 				
 			}
 		});
+	
+
 	}
+		
 
 }

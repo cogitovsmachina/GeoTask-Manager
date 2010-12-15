@@ -29,8 +29,9 @@
 		android:layout_below="@id/map_location_button"
 		android:layout_above="@+id/use_this_location_button"
  		android:clickable="true" 		
- 		android:apiKey="0HaBk-SFoj5mylVmA5E9xfmP6jpha9IbyBVWDXA" /> <!--0HaBk-SFoj5mG0RDgbRUku_ngMx72UZ2s5p6-tA--> 
- 		<!--debug certificate 0HaBk-SFoj5mylVmA5E9xfmP6jpha9IbyBVWDXA--> 
+ 		android:apiKey="0HaBk-SFoj5mylVmA5E9xfmP6jpha9IbyBVWDXA"/> 
+<!-- Production apiKey= 0ggmsULpx5gWnKdIEw2m1AmGVAPURVYY-LhPUYw--> 
+<!-- debug certificate= 0HaBk-SFoj5mylVmA5E9xfmP6jpha9IbyBVWDXA--> 
 	<Button
 		android:id="@id/use_this_location_button"
  		android:layout_width="fill_parent"
