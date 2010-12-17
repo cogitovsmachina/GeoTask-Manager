@@ -159,6 +159,10 @@ containing a value of this type.
         public static final int ok_ill_never_doit_again=0x7f050010;
         public static final int remove=0x7f050002;
         public static final int show_local=0x7f050000;
+        public static final int tasks_address_hint=0x7f050016;
+        public static final int tasks_title_hint=0x7f050015;
+        public static final int the_address_must_have_something_message=0x7f050014;
+        public static final int the_address_must_have_something_title=0x7f050013;
         public static final int the_task_must_have_description_message=0x7f050011;
         public static final int the_task_must_have_description_title=0x7f050012;
         public static final int unsaved_changes_message=0x7f05000a;

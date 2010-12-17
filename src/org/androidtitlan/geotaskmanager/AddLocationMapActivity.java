@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -44,6 +46,8 @@ public class AddLocationMapActivity extends MapActivity {
 	private Address address;
 	private MyLocationOverlay myLocationOverlay;
 
+	private AlertDialog AddressStringMustHaveSomethingDialog;
+
 	@Override
 	protected void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
@@ -61,8 +65,8 @@ public class AddLocationMapActivity extends MapActivity {
 	@Override
 	protected void onPause(){
 		super.onPause();
-		finish();
 		myLocationOverlay.disableMyLocation();
+		finish();
 
 
 		
@@ -71,6 +75,10 @@ public class AddLocationMapActivity extends MapActivity {
 	
 	protected void mapCurrentAddress() {
 		String addressString = addressText.getText().toString();
+		if(addressString.equals("")){
+			showAddressStringMustHaveSomethingDialog();
+		}
+		else{
 		Geocoder g = new Geocoder(this);
 		List<Address> addresses;
 		try {
@@ -94,9 +102,23 @@ public class AddLocationMapActivity extends MapActivity {
 			}
 		} catch (IOException e) {
 	        Toast.makeText(this, "Problem finding the address, don't use commas (,) and check if you have internet access.", Toast.LENGTH_SHORT).show();
-		        Toast.makeText(this, "Cant Get Address, check if you have internet or if its well written", Toast.LENGTH_LONG).show();
 			}
 		}
+	}
+	
+	//Using this method to tell the user need to add something to the address =)
+	private void showAddressStringMustHaveSomethingDialog() {
+		AddressStringMustHaveSomethingDialog = new AlertDialog.Builder(this)
+		.setTitle(R.string.the_address_must_have_something_title)
+		.setMessage(R.string.the_address_must_have_something_message)
+		.setNeutralButton(R.string.ok_ill_never_doit_again, new AlertDialog.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+				}
+		})	
+		.create();
+		AddressStringMustHaveSomethingDialog.show();			
+	}
 
 	private void setUpViews() {
 		addressText = (EditText)findViewById(R.id.task_address);

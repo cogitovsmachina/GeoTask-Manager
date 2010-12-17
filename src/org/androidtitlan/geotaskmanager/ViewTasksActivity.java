@@ -61,7 +61,6 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
         adapter = new TaskListAdapter(this, app.getCurrentTasks());
         setListAdapter(adapter);
         setUpLocation();
-      //  printMyCurrentLocationAsString(location); 
 
         
        

@@ -19,9 +19,11 @@
     <string name="ok">Ok</string>
     <string name="ok_ill_never_doit_again">Ok, i never do it again</string>
     <string name="the_task_must_have_description_message">The task must have description, Please add something!</string>
-    <string name="the_task_must_have_description_title">The task need description</string>
-    
-    
+    <string name="the_task_must_have_description_title">The task is needed</string>
+    <string name="the_address_must_have_something_title">The Address is needed </string>
+    <string name="the_address_must_have_something_message">The task must have an address. Please add something!</string>
+    <string name="tasks_title_hint">Example: Visit Mexico City</string>
+    <string name="tasks_address_hint">Example: Mexico City</string>
     
 
 </resources>

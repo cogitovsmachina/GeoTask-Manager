@@ -15,6 +15,7 @@
  		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@id/location_title"
+		android:hint="@string/tasks_address_hint"
  		android:lines="3"/>
 	<Button
 		android:id="@+id/map_location_button"
@@ -30,8 +31,8 @@
 		android:layout_above="@+id/use_this_location_button"
  		android:clickable="true" 		
  		android:apiKey="0HaBk-SFoj5mylVmA5E9xfmP6jpha9IbyBVWDXA"/> 
-<!-- Production apiKey= 0ggmsULpx5gWnKdIEw2m1AmGVAPURVYY-LhPUYw--> 
-<!-- debug certificate= 0HaBk-SFoj5mylVmA5E9xfmP6jpha9IbyBVWDXA--> 
+<!-- Production apiKey= 0ggmsULpx5gWnKdIEw2m1AmGVAPURVYY-LhPUYw --> 
+<!-- debug certificate= 0HaBk-SFoj5mylVmA5E9xfmP6jpha9IbyBVWDXA --> 
 	<Button
 		android:id="@id/use_this_location_button"
  		android:layout_width="fill_parent"
