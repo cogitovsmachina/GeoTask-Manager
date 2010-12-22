@@ -12,14 +12,9 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
-import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.MyLocationOverlay;
 import com.google.android.maps.Overlay;
@@ -38,15 +33,13 @@ public class AddLocationMapActivity extends MapActivity {
 	
 	public static final String ADDRESS_RESULT = "address";
 	
-	private Button mapLocationButton;
-	private Button useLocationButton;
-	private EditText addressText;
+	//private Button mapLocationButton;
+	//private Button useLocationButton;
 	public MapView mapView;
 	private Address address;
 	private MyLocationOverlay myLocationOverlay;
 	OverlayManager overlayManager;
 
-	private AlertDialog AddressStringMustHaveSomethingDialog;
 
 	@Override
 	protected void onCreate(Bundle bundle) {
@@ -75,7 +68,7 @@ public class AddLocationMapActivity extends MapActivity {
 		
 	}
 	
-	protected void mapCurrentAddress() {
+/*	protected void mapCurrentAddress() {
 		String addressString = addressText.getText().toString();
 		if(addressString.equals("")){
 			showAddressStringMustHaveSomethingDialog();
@@ -95,10 +88,10 @@ public class AddLocationMapActivity extends MapActivity {
 				final MapController mapController = mapView.getController();
 				mapController.animateTo(addressOverlay.getGeopoint(), new Runnable() {
 					public void run() {
-						mapController.setZoom(18);
+					//	mapController.setZoom(18);
 					}
 				});
-				useLocationButton.setEnabled(true);
+			//	useLocationButton.setEnabled(true);
 			} else {
 		        Toast.makeText(this, "Problem finding the address, don't use commas (,) and check if you have internet access.", Toast.LENGTH_SHORT).show();
 			}
@@ -106,27 +99,13 @@ public class AddLocationMapActivity extends MapActivity {
 	        Toast.makeText(this, "Problem finding the address, don't use commas (,) and check if you have internet access.", Toast.LENGTH_SHORT).show();
 			}
 		}
-	}
+	}*/
 	
-	//Using this method to tell the user need to add something to the address =)
-	private void showAddressStringMustHaveSomethingDialog() {
-		AddressStringMustHaveSomethingDialog = new AlertDialog.Builder(this)
-		.setTitle(R.string.the_address_must_have_something_title)
-		.setMessage(R.string.the_address_must_have_something_message)
-		.setNeutralButton(R.string.ok_ill_never_doit_again, new AlertDialog.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.cancel();
-				}
-		})	
-		.create();
-		AddressStringMustHaveSomethingDialog.show();			
-	}
 
 	private void setUpViews() {
-		addressText = (EditText)findViewById(R.id.task_address);
-		mapLocationButton = (Button)findViewById(R.id.map_location_button);
-		useLocationButton = (Button)findViewById(R.id.use_this_location_button);
-		useLocationButton.setEnabled(false);
+	//	mapLocationButton = (Button)findViewById(R.id.map_location_button);
+	//	useLocationButton = (Button)findViewById(R.id.use_this_location_button);
+		//useLocationButton.setEnabled(false);
 		mapView = (MapView)findViewById(R.id.map);
 		myLocationOverlay = new MyLocationOverlay(this, mapView);
 		mapView.getOverlays().add(myLocationOverlay);
@@ -140,7 +119,7 @@ public class AddLocationMapActivity extends MapActivity {
 		
 
 		
-		useLocationButton.setOnClickListener(new View.OnClickListener() {
+		/*	useLocationButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (null != address) {
 					Intent intent = new Intent();
@@ -166,7 +145,7 @@ public class AddLocationMapActivity extends MapActivity {
 				}
 				finish();
 			}
-		});
+		});*/
 }	
 		
 	

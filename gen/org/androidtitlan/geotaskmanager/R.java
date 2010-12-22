@@ -118,25 +118,23 @@ containing a value of this type.
         public static final int window_title_background=0x7f020019;
     }
     public static final class id {
-        public static final int add_button=0x7f070009;
-        public static final int add_location_button=0x7f070008;
-        public static final int address_text=0x7f070007;
-        public static final int admob=0x7f07000b;
-        public static final int cancel_button=0x7f07000a;
-        public static final int layout_root=0x7f070010;
-        public static final int location_text=0x7f07000c;
+        public static final int add_button=0x7f070007;
+        public static final int add_location_button=0x7f070006;
+        public static final int address_text=0x7f070005;
+        public static final int admob=0x7f070009;
+        public static final int cancel_button=0x7f070008;
+        public static final int layout_root=0x7f07000e;
+        public static final int location_text=0x7f07000a;
         public static final int location_title=0x7f070000;
-        public static final int map=0x7f070003;
-        public static final int map_location_button=0x7f070002;
-        public static final int no_internet_connection_text=0x7f070012;
-        public static final int remove_button=0x7f07000d;
-        public static final int show_local_tasks_text=0x7f07000f;
-        public static final int show_local_tasks_toggle=0x7f07000e;
-        public static final int stop_png=0x7f070011;
-        public static final int task_address=0x7f070001;
-        public static final int task_name=0x7f070006;
-        public static final int tasks_title=0x7f070005;
-        public static final int use_this_location_button=0x7f070004;
+        public static final int map=0x7f070001;
+        public static final int no_internet_connection_text=0x7f070010;
+        public static final int remove_button=0x7f07000b;
+        public static final int show_local_tasks_text=0x7f07000d;
+        public static final int show_local_tasks_toggle=0x7f07000c;
+        public static final int stop_png=0x7f07000f;
+        public static final int task_name=0x7f070004;
+        public static final int tasks_title=0x7f070003;
+        public static final int use_this_location_button=0x7f070002;
     }
     public static final class layout {
         public static final int add_location=0x7f030000;
