@@ -37,6 +37,7 @@ import android.widget.ToggleButton;
 
 public class ViewTasksActivity extends ListActivity implements LocationListener {
 
+	
 	private static final long LOCATION_FILTER_DISTANCE = 3000;
 	private Button addButton;
 	private TaskListAdapter adapter;
@@ -61,14 +62,8 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
         adapter = new TaskListAdapter(this, app.getCurrentTasks());
         setListAdapter(adapter);
         setUpLocation();
-
-        
-       
-
     }
 	
-	
-
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -82,15 +77,13 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 		Task t = adapter.getItem(position);
 		app.saveTask(t);
 	}
-	//we added a LocationManager and a Geocoder to change as a human-readable string
 	public void onLocationChanged(Location location) {
-		printMyCurrentLocationAsString(location);
-		
-		
+		printMyCurrentLocationAsString(location);		
 	}
 	 
 
 	private void printMyCurrentLocationAsString(Location location) {
+		//we added a LocationManager and a Geocoder to change as a human-readable string
 		LocationManager mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria(); criteria.setAccuracy(Criteria.ACCURACY_FINE); 
         criteria.setPowerRequirement(Criteria.POWER_LOW); 

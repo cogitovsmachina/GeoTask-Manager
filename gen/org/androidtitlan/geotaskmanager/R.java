@@ -106,15 +106,16 @@ containing a value of this type.
         public static final int list_item_divider=0x7f02000d;
         public static final int list_selector_background=0x7f02000e;
         public static final int logo=0x7f02000f;
-        public static final int stop_hdpi=0x7f020010;
-        public static final int stop_ldpi=0x7f020011;
-        public static final int stop_mdpi=0x7f020012;
-        public static final int textfield_default=0x7f020013;
-        public static final int textfield_disabled=0x7f020014;
-        public static final int textfield_disabled_selected=0x7f020015;
-        public static final int textfield_pressed=0x7f020016;
-        public static final int textfield_selected=0x7f020017;
-        public static final int window_title_background=0x7f020018;
+        public static final int marker=0x7f020010;
+        public static final int stop_hdpi=0x7f020011;
+        public static final int stop_ldpi=0x7f020012;
+        public static final int stop_mdpi=0x7f020013;
+        public static final int textfield_default=0x7f020014;
+        public static final int textfield_disabled=0x7f020015;
+        public static final int textfield_disabled_selected=0x7f020016;
+        public static final int textfield_pressed=0x7f020017;
+        public static final int textfield_selected=0x7f020018;
+        public static final int window_title_background=0x7f020019;
     }
     public static final class id {
         public static final int add_button=0x7f070009;
