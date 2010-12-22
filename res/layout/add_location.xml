@@ -17,7 +17,7 @@
 		android:layout_above="@+id/use_this_location_button"
  		android:clickable="true" 		
  		android:layout_alignParentBottom="true"
- 		android:apiKey="0HaBk-SFoj5mylVmA5E9xfmP6jpha9IbyBVWDXA"/> 
+ 		android:apiKey="0ggmsULpx5gWnKdIEw2m1AmGVAPURVYY-LhPUYw"/>  
 <!-- Production apiKey= 0ggmsULpx5gWnKdIEw2m1AmGVAPURVYY-LhPUYw --> 
 <!-- debug certificate= 0HaBk-SFoj5mylVmA5E9xfmP6jpha9IbyBVWDXA --> 
 	

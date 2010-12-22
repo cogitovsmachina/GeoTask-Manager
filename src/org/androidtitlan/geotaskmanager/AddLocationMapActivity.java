@@ -33,8 +33,6 @@ public class AddLocationMapActivity extends MapActivity {
 	
 	public static final String ADDRESS_RESULT = "address";
 	
-	//private Button mapLocationButton;
-	//private Button useLocationButton;
 	public MapView mapView;
 	private Address address;
 	private MyLocationOverlay myLocationOverlay;
@@ -68,44 +66,10 @@ public class AddLocationMapActivity extends MapActivity {
 		
 	}
 	
-/*	protected void mapCurrentAddress() {
-		String addressString = addressText.getText().toString();
-		if(addressString.equals("")){
-			showAddressStringMustHaveSomethingDialog();
-		}
-		else{
-		Geocoder g = new Geocoder(this);
-		List<Address> addresses;
-		try {
-			addresses = g.getFromLocationName(addressString, 1);
-			if (addresses.size() > 0) {
-				address = addresses.get(0);
-				List<Overlay> mapOverlays = mapView.getOverlays();
-				AddressOverlay addressOverlay = new AddressOverlay(address);
-				mapOverlays.add(addressOverlay);
-				mapOverlays.add(myLocationOverlay);
-				mapView.invalidate();
-				final MapController mapController = mapView.getController();
-				mapController.animateTo(addressOverlay.getGeopoint(), new Runnable() {
-					public void run() {
-					//	mapController.setZoom(18);
-					}
-				});
-			//	useLocationButton.setEnabled(true);
-			} else {
-		        Toast.makeText(this, "Problem finding the address, don't use commas (,) and check if you have internet access.", Toast.LENGTH_SHORT).show();
-			}
-		} catch (IOException e) {
-	        Toast.makeText(this, "Problem finding the address, don't use commas (,) and check if you have internet access.", Toast.LENGTH_SHORT).show();
-			}
-		}
-	}*/
+
 	
 
 	private void setUpViews() {
-	//	mapLocationButton = (Button)findViewById(R.id.map_location_button);
-	//	useLocationButton = (Button)findViewById(R.id.use_this_location_button);
-		//useLocationButton.setEnabled(false);
 		mapView = (MapView)findViewById(R.id.map);
 		myLocationOverlay = new MyLocationOverlay(this, mapView);
 		mapView.getOverlays().add(myLocationOverlay);
@@ -116,36 +80,6 @@ public class AddLocationMapActivity extends MapActivity {
 		
 		overlayManager = new OverlayManager(getApplication(), mapView);
 		createOverlayWithListener();
-		
-
-		
-		/*	useLocationButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				if (null != address) {
-					Intent intent = new Intent();
-					intent.putExtra(ADDRESS_RESULT, address);
-					setResult(RESULT_OK, intent);
-				}
-				
-				finish();
-			}
-		});
-		mapLocationButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				mapCurrentAddress();
-			}
-		});
-		
-		useLocationButton.setOnClickListener(new View.OnClickListener(){
-			public void onClick(View v){
-				if (null != address){
-					Intent intent = new Intent();
-					intent.putExtra(ADDRESS_RESULT, address);
-					setResult(RESULT_OK, intent);
-				}
-				finish();
-			}
-		});*/
 }	
 		
 	
@@ -161,10 +95,6 @@ public class AddLocationMapActivity extends MapActivity {
 			 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
 			 ManagedOverlay managedOverlay = overlayManager.createOverlay("listenerOverlay", getResources().getDrawable(R.drawable.marker));
-			//here we call the GeoHelper Class which helps us print our markers
-			for (int i = 0; i < 40; i = i + 3) {
-				managedOverlay.createItem(GeoHelper.geopoint[i], "Item" + i);
-			}
 			managedOverlay.setOnOverlayGestureListener(new ManagedOverlayGestureDetector.OnOverlayGestureListener() {
 
 
