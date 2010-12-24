@@ -59,11 +59,6 @@ public class AddLocationMapActivity extends MapActivity {
 	protected void onPause(){
 		super.onPause();
 		myLocationOverlay.disableMyLocation();
-		finish();
-
-
-		
-		
 	}
 	
 

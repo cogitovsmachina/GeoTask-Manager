@@ -85,8 +85,10 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 	private void printMyCurrentLocationAsString(Location location) {
 		//we added a LocationManager and a Geocoder to change as a human-readable string
 		LocationManager mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria(); criteria.setAccuracy(Criteria.ACCURACY_FINE); 
+        Criteria criteria = new Criteria(); 
+        criteria.setAccuracy(Criteria.ACCURACY_COARSE); 
         criteria.setPowerRequirement(Criteria.POWER_LOW); 
+        criteria.setCostAllowed(true); 
         String locationprovider = mLocationManager.getBestProvider(criteria,true);
         Location mLocation = mLocationManager.getLastKnownLocation(locationprovider);
         latestLocation = location;
@@ -159,8 +161,8 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 		//we say we need to send us a ping constantly using 60ms or 5 meters of difference to requests
 		locationmanager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
-                60,
-                5,
+                900000,
+                500,
                 this);
 	    if ( !locationmanager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
 	        buildAlertMessageNoGps();
