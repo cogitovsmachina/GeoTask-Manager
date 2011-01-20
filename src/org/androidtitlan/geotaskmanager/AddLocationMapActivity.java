@@ -5,12 +5,16 @@ import java.util.List;
 import java.util.Locale;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.google.android.maps.GeoPoint;
@@ -44,6 +48,7 @@ public class AddLocationMapActivity extends MapActivity {
 		super.onCreate(bundle);
 		setContentView(R.layout.add_location);
 		setUpViews();
+		isOnline();
 	
 	}
 	
@@ -215,6 +220,46 @@ public class AddLocationMapActivity extends MapActivity {
 	@Override
 	protected boolean isRouteDisplayed() {
 		return false;
+	}
+	
+	//method to detect if device is connected by any means
+	public boolean isOnline() {		
+		ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		// are we connected to the net(wifi or phone)
+		if ( cm.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED ||
+				//cm.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTING ||
+				//cm.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING ||
+				cm.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED ) {
+	    			Log.e("Testing Internet Connection", "We have internet");
+			return true; 
+
+		} else if (cm.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED 
+				||  cm.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTED){
+			showNoInternetConnectionDialog();
+			Log.e("Testing Internet Connection", "We dont have internet");
+			return false; 
+		}
+		return false;
+		
+	}
+	//Showing the No internet connection Custom Dialog =)
+	public void showNoInternetConnectionDialog(){
+		Log.e("Testing Internet Connection", "Entering showNoInternetConnectionDialog Method");
+		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	    builder.setMessage("Whoops! Its seems you don't have internet connection, please try again later!")
+	            .setTitle("No Internet Connection")
+	    		.setCancelable(false)
+	           .setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+	               public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+	            	   finish();
+	               }
+	           });
+	    final AlertDialog alert = builder.create();
+	    alert.show();
+		Log.e("Testing Internet Connection", "Showed NoIntenetConnectionDialog");
+
+	
 	}
 	
 }

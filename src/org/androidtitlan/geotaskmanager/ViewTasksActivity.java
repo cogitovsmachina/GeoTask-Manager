@@ -28,11 +28,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class ViewTasksActivity extends ListActivity implements LocationListener {
@@ -61,7 +63,7 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
         app = (GeoTaskManagerApplication)getApplication();
         adapter = new TaskListAdapter(this, app.getCurrentTasks());
         setListAdapter(adapter);
-        setUpLocation();
+        setUpLocation();   
     }
 	
 	@Override
@@ -123,12 +125,11 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 	
 	protected void showLocalTasks(boolean checked) {
 		if (checked) {
-			isOnline();
 			adapter.filterTasksByLocation(latestLocation, LOCATION_FILTER_DISTANCE);			
 		} else {
 			adapter.removeLocationFilter();
 		}
-	}
+	} 
 	
 	
 	private void setUpViews() {
@@ -158,7 +159,7 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
 	
 	private void setUpLocation() {
 		LocationManager locationmanager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
-		//we say we need to send us a ping constantly using 60ms or 5 meters of difference to requests
+		//we say we need to send us a ping constantly using 900000ms or 500 meters of difference to requests
 		locationmanager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
                 900000,
@@ -198,46 +199,6 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivityForResult(intent, 0);
     }
-
-	//method to detect if device is connected by any means
-	public boolean isOnline() {
-		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo netInfo = cm.getActiveNetworkInfo();
-		
-		if (netInfo != null && netInfo.isConnected()) {
-			return true;
-		} else{
-			
-			return false;
-		}
-		
-	}
-	//Showing the No internet connection Custom Dialog =)
-	public void showNoInternetConnectionDialog(){
-		Context mContext = getApplicationContext();
-		Dialog dialog = new Dialog(mContext);
-
-		dialog.setContentView(R.layout.no_internet_connection_dialog);
-		dialog.setTitle("You don't have internet connection");
-
-		TextView text = (TextView) dialog.findViewById(R.id.no_internet_connection_text);
-		text.setText("Whoops! Its seems you don't have internet connection, please try again!");
-		ImageView image = (ImageView) dialog.findViewById(R.id.stop_png);
-		image.setImageResource(R.drawable.stop_mdpi);
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setCancelable(false)
-		       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		           public void onClick(DialogInterface dialog, int id) {
-		                ViewTasksActivity.this.finish();
-		           }
-		       })
-		       .setNegativeButton("No", new DialogInterface.OnClickListener() {
-		           public void onClick(DialogInterface dialog, int id) {
-		                dialog.cancel();
-		           }
-		       });
-		AlertDialog alert = builder.create();
-	}
 
 
 }     
