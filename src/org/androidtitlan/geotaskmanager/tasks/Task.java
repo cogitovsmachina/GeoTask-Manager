@@ -59,7 +59,7 @@ public class Task {
 			int maxAddressLine = a.getMaxAddressLineIndex();
 			StringBuffer sb = new StringBuffer("");
 			for (int i=0; i<maxAddressLine; i++) {
-				sb.append(a.getAddressLine(i) + "");
+				sb.append(a.getAddressLine(i) + ", ");
 			}
 			address = sb.toString();
 			latitude = a.getLatitude();

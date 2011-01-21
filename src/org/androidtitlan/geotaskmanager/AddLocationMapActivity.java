@@ -35,6 +35,7 @@ import org.androidtitlan.geotaskmanager.views.AddressOverlay;
 
 public class AddLocationMapActivity extends MapActivity {
 	
+
 	public static final String ADDRESS_RESULT = "address";
 	
 	public MapView mapView;
@@ -47,9 +48,9 @@ public class AddLocationMapActivity extends MapActivity {
 	protected void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
 		setContentView(R.layout.add_location);
+
 		setUpViews();
 		isOnline();
-	
 	}
 	
 
@@ -57,7 +58,6 @@ public class AddLocationMapActivity extends MapActivity {
 	protected void onResume(){
 		super.onResume();
 		myLocationOverlay.enableMyLocation();
-		
 	}
 
 	@Override
@@ -65,9 +65,6 @@ public class AddLocationMapActivity extends MapActivity {
 		super.onPause();
 		myLocationOverlay.disableMyLocation();
 	}
-	
-
-	
 
 	private void setUpViews() {
 		mapView = (MapView)findViewById(R.id.map);

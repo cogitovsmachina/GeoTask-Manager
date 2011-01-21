@@ -96,8 +96,8 @@ public class ViewTasksActivity extends ListActivity implements LocationListener 
         latestLocation = location;
         List<Address> addresses; 
         try {
-        	Geocoder mGC = new Geocoder(this, Locale.ENGLISH); 
-        	addresses = mGC.getFromLocation(mLocation.getLatitude(),
+        	Geocoder mGeocoder = new Geocoder(this, Locale.ENGLISH); 
+        	addresses = mGeocoder.getFromLocation(mLocation.getLatitude(),
         	mLocation.getLongitude(), 1);
         	if(addresses != null) {
         		Address currentAddr = addresses.get(0); 
